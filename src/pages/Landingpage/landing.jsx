@@ -1,30 +1,51 @@
 import React from "react";
 import "./landing.css";
 import Pic from "../../image.png";
+import { useState } from "react";
+import AnimationRevealPage from "../../helpers/AnimationRevealPage";
+import { Footer } from "../../components/Footer/footer";
+import routes from "../../utils/routes";
+import { motion } from "framer-motion";
+import useInView from "../../helpers/useInView";
 
 
-export const Landing = () => {
+
+
+export const Landing = ({ direction = "up", offset = 100 }) => {
+  const y = { target: 0 };
+
+  if (direction === "up") y.initial = "200%";
+  else y.initial = "hidden";
+
+  const [ref, inView] = useInView({ margin: `${offset}px 0px 0px 10px` });
+
+  // const router = useRouter()
+  const [navbar, setNavbar] = useState(false);
+
+  const onScroll = () => {
+    if (window.scrollY >= 20) {
+      setNavbar(true)
+    } else {
+      setNavbar(false)
+    }
+  }
+
+
+  window.addEventListener('scroll', onScroll)
   return (
     <div data-new-gr-c-s-check-loaded="14.1096.0" data-gr-ext-installed="">
       <div id="__next" data-reactroot="">
-        <header className="fixed top-0 w-full z-30 bg-white transition-all shadow-md pt-0">
+        <header id="home" className={navbar ? 'fixed top-0 w-full z-30 bg-white transition-all shadow-md pt-0' : "fixed top-0 w-full z-30 bg-white transition-all pt-3"}>
           <nav className="max-w-screen-xl px-6 sm:px-8 lg:px-16 mx-auto grid grid-flow-col py-3 sm:py-4">
             <div className="col-start-1 col-end-2 flex items-center">
               <strong>LOGO HERE</strong>
             </div>
             <ul className="hidden lg:flex col-start-4 col-end-8 text-black-500 items-center">
-              <a className="px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative text-green-500  animation-active active">
-                Home
-              </a>
-              <a className="px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative text-black-500 hover:text-green-500">
-                Abortion Resources
-              </a>
-              <a className="px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative text-black-500 hover:text-green-500 ">
-                Impact Model
-              </a>
-              <a className="px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative text-black-500 hover:text-green-500">
-                Partnership
-              </a>
+              {routes.map((route) => {
+                return (
+                  <a key={route.id} href={route.url} className={`px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative text-green-500  hover:border-b-2 hover:border-green-500 ${route.isActive ? 'border-b-2 border-green-500' : ""}`}>{route.name}</a>
+                )
+              })}
             </ul>
             <div className="col-start-10 col-end-12 font-medium flex justify-end items-center">
               <button className="font-medium tracking-wide py-2 px-5 sm:px-8 border border-green-500 text-green-500 bg-white-500 outline-none rounded-l-full rounded-r-full capitalize hover:bg-green-500 hover:text-white transition-all hover:shadow-green">
@@ -33,563 +54,368 @@ export const Landing = () => {
             </div>
           </nav>
         </header>
-        <nav className="fixed lg:hidden bottom-0 left-0 right-0 z-20 px-4 sm:px-8 shadow-t">
-          <div className="bg-white-500 sm:px-3">
-            <ul className="flex w-full justify-between items-center text-black-500">
-              <a className="mx-1 sm:mx-2 px-3 sm:px-4 py-2 flex flex-col items-center text-xs border-t-2 transition-all border-transparent">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-                Home
-              </a>
-              <a className="mx-1 sm:mx-2 px-3 sm:px-4 py-2 flex flex-col items-center text-xs border-t-2 transition-all border-transparent">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                  ></path>
-                </svg>
-                Abortion Resources
-              </a>
-              <a className="mx-1 sm:mx-2 px-3 sm:px-4 py-2 flex flex-col items-center text-xs border-t-2 transition-all border-green-500 text-green-500 active">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-                Impact Model
-              </a>
-              <a className="mx-1 sm:mx-2 px-3 sm:px-4 py-2 flex flex-col items-center text-xs border-t-2 transition-all border-transparent">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                  ></path>
-                </svg>
-                Partnership
-              </a>
-            </ul>
-          </div>
-        </nav>
-
         <div className="max-w-screen-xl mt-10 px-8 xl:px-16 mx-auto" id="about">
-          <div>
-            <div className="grid grid-flow-row opacity-1 transform-none sm:grid-flow-col grid-rows-2 md:grid-rows-1 sm:grid-cols-2 gap-8 py-6 sm:py-16">
-              <div className="flex flex-col justify-center items-start row-start-2 sm:row-start-1">
-                <h2 className="text-3xl font-bold text-left text-green-500">
-                  Abortion
-                </h2>
-                <p className="text-black-500 mt-5">
-                  Having a baby is one the most enjoyable moment. Friends come
-                  with gifts and some people held parties to welcome the
-                  newborn. However, nowadays some of the pregnancies are not
-                  wanted so that having that bay is no longer something to
-                  enjoy.
-                </p>
-                <p className="text-black-500 mt-5">
-                  In all corners of the world, people use different ways to
-                  avoid pregnancy. In Rwanda, there are some old culture
-                  traditions that people use to perform in order to avoid
-                  pregnancy. Some of women would bath in dump water to avoid
-                  being pregnant in old age. Some of the families used to do
-                  some ceremonies to protect their young girls to be pregnant.
-                </p>
-                <p className="text-black-500 mt-5">
-                  This shows that the issue of avoiding pregnancy is not recent
-                  as you may think. It was done even the introduction of
-                  different contraceptive methods. But with the modern medicine,
-                  preventing pregnant was made easy. However, still, a great
-                  number of girls and women have unwanted pregnancies. Some of
-                  them may wish to abort at any cost. In the country like ours
-                  where abortion is illegal, a considerable number of women and
-                  girls opt unsafe abortion.
-                </p>
-              </div>
-              <div className="flex w-full">
-                <div className="h-full w-full opacity-1 transform-none">
-                  <span className="one">
-                    <span className="two"></span>
-                    <img
-                      alt="VPN Illustrasi"
-                      src={Pic}
-                      decoding="async"
-                      data-nimg="responsive"
-                      className="img"
-                      sizes="100vw"
-                    />
-                    <noscript>
+          <AnimationRevealPage>
+            <div>
+              <div className="grid grid-flow-row opacity-1 transform-none sm:grid-flow-col grid-rows-2 md:grid-rows-1 sm:grid-cols-2 gap-8 py-6 sm:py-16">
+                <div className="flex flex-col justify-center items-start row-start-2 sm:row-start-1">
+                  <h2 className="text-3xl font-bold text-left text-green-500">
+                    Abortion
+                  </h2>
+                  <p className="text-black-500 mt-5">
+                    Having a baby is one the most enjoyable moment. Friends come
+                    with gifts and some people held parties to welcome the
+                    newborn. However, nowadays some of the pregnancies are not
+                    wanted so that having that bay is no longer something to
+                    enjoy.
+                  </p>
+                  <p className="text-black-500 mt-5">
+                    In all corners of the world, people use different ways to
+                    avoid pregnancy. In Rwanda, there are some old culture
+                    traditions that people use to perform in order to avoid
+                    pregnancy. Some of women would bath in dump water to avoid
+                    being pregnant in old age. Some of the families used to do
+                    some ceremonies to protect their young girls to be pregnant.
+                  </p>
+                  <p className="text-black-500 mt-5">
+                    This shows that the issue of avoiding pregnancy is not recent
+                    as you may think. It was done even the introduction of
+                    different contraceptive methods. But with the modern medicine,
+                    preventing pregnant was made easy. However, still, a great
+                    number of girls and women have unwanted pregnancies. Some of
+                    them may wish to abort at any cost. In the country like ours
+                    where abortion is illegal, a considerable number of women and
+                    girls opt unsafe abortion.
+                  </p>
+                </div>
+                <div className="flex w-full">
+                  <div className="h-full w-full opacity-1 transform-none">
+                    <span className="one">
+                      <span className="two"></span>
                       <img
                         alt="VPN Illustrasi"
-                        sizes="100vw"
                         src={Pic}
-                        loading="lazy"
+                        decoding="async"
+                        data-nimg="responsive"
+                        className="img"
+                        sizes="100vw"
                       />
-                    </noscript>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="container">
-            <h1 className="text-2xl text-center mb-10 font-bold text-green-500">
-              What is abortion? What’s the status of it in Rwanda?
-            </h1>
-            <p className="text-black-500 mt-5 text-left">
-              Abortion is defined as the termination of pregnancy before 20
-              weeks of pregnancy. Some of the countries even go up to 28 weeks
-              of pregnancy
-            </p>
-            <p className="text-black-500 mt-5 text-left">
-              Although, abortion in Rwanda is illegal, in 2009 about 60,000
-              women and girls had abortion, according to the research of
-              University of Rwanda, School of Public health. On average it’s 25
-              women in 1000 aged between 14 and 44.
-            </p>
-            <p className="text-black-500 mt-5 text-left mb-5">
-              The number of illegal abortion is low compared to other neighbors’
-              countries and other countries in sub Saharan Africa. The capital
-              city of Rwanda, Kigali, counts one third of all abortions in
-              Rwanda.
-            </p>
-          </div>
-          <div>
-            <h1 className="text-2xl text-center mb-10 font-bold text-green-500">
-              Why access to abortion matters ?
-            </h1>
-            <div className="relative w-full flex">
-              <div className="rounded-lg w-full grid grid-flow-row sm:grid-flow-row grid-cols-1 sm:grid-cols-3 py-9 divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-gray-100 bg-white-500 z-10">
-                <div className="flex opacity-1 transform-noneitems-center justify-start sm:justify-center py-4 sm:py-6 w-8/12 px-4 sm:w-auto mx-auto sm:mx-0 mb-5">
-                  <div className="flex flex-col mx-auto w-40 sm:w-auto">
-                    <div className="flex items-center justify-center bg-green-100 w-12 h-12 mr-6 rounded-full">
-                      <div className="rounded-full">1</div>
-                    </div>
-                    <div className="flex flex-col">
-                      <p className="text-lg text-black-500">
-                        Abortion is a common health intervention. It is safe
-                        when carried out using a method recommended by WHO,
-                        appropriate to the pregnancy duration and by someone
-                        with the necessary skills.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex opacity-1 transform-none items-center justify-start sm:justify-center py-4 sm:py-6 w-8/12 px-4 sm:w-auto mx-auto sm:mx-0 mb-5">
-                  <div className="flex flex-col mx-auto w-40 sm:w-auto">
-                    <div className="flex items-center justify-center bg-green-100 w-12 h-12 mr-6 rounded-full">
-                      <div className="rounded-full">2</div>
-                    </div>
-                    <div className="flex flex-col">
-                      <p className="text-lg text-black-500">
-                        Six out of 10 of all unintended pregnancies end in an
-                        induced abortion
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex opacity-1 transform-none items-center justify-start sm:justify-center py-4 sm:py-6 w-8/12 px-4 sm:w-auto mx-auto sm:mx-0 mb-5">
-                  <div className="flex flex-col mx-auto w-40 sm:w-auto">
-                    <div className="flex items-center justify-center bg-green-100 w-12 h-12 mr-6 rounded-full">
-                      <div className="rounded-full">3</div>
-                    </div>
-                    <div className="flex flex-col">
-                      <p className="text-lg text-black-500">
-                        Around 45% of all abortions are unsafe, of which 97%
-                        take place in developing countries
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex opacity-1 transform-none items-center justify-start sm:justify-center py-4 sm:py-6 w-8/12 px-4 sm:w-auto mx-auto sm:mx-0 mb-5">
-                  <div className="flex flex-col mx-auto w-40 sm:w-auto">
-                    <div className="flex items-center justify-center bg-green-100 w-12 h-12 mr-6 rounded-full">
-                      <div className="rounded-full">4</div>
-                    </div>
-                    <div className="flex flex-col">
-                      <p className="text-lg text-black-500">
-                        Unsafe abortion is a leading – but preventable – cause
-                        of maternal deaths and morbidities. It can lead to
-                        physical and mental health complications and social and
-                        financial burdens for women, communities and health
-                        systems.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex opacity-1 transform-none items-center justify-start sm:justify-center py-4 sm:py-6 w-8/12 px-4 sm:w-auto mx-auto sm:mx-0 mb-5">
-                  <div className="flex flex-col mx-auto w-40 sm:w-auto">
-                    <div className="flex items-center justify-center bg-green-100 w-12 h-12 mr-6 rounded-full">
-                      <div className="rounded-full">5</div>
-                    </div>
-                    <div className="flex flex-col">
-                      <p className="text-lg text-black-500">
-                        Lack of access to safe, timely, affordable and
-                        respectful abortion care is a critical public health and
-                        human rights issue.
-                      </p>
-                    </div>
+                      <noscript>
+                        <img
+                          alt="VPN Illustrasi"
+                          sizes="100vw"
+                          src={Pic}
+                          loading="lazy"
+                        />
+                      </noscript>
+                    </span>
                   </div>
                 </div>
               </div>
-              <div className="absolute filter: blur(114px) bg-black-600 opacity-5 w-11/12 roudned-lg h-64 sm:h-48 top-0 mt-8 mx-auto left-0 right-0"></div>
             </div>
+          </AnimationRevealPage>
+          <div id="abortion">
+            <div className="container">
+              <h1 className="text-2xl text-center mb-10 font-bold text-green-500">
+                What is abortion? What’s the status of it in Rwanda?
+              </h1>
+              <p className="text-black-500 mt-5 text-left">
+                Abortion is defined as the termination of pregnancy before 20
+                weeks of pregnancy. Some of the countries even go up to 28 weeks
+                of pregnancy
+              </p>
+              <p className="text-black-500 mt-5 text-left">
+                Although, abortion in Rwanda is illegal, in 2009 about 60,000
+                women and girls had abortion, according to the research of
+                University of Rwanda, School of Public health. On average it’s 25
+                women in 1000 aged between 14 and 44.
+              </p>
+              <p className="text-black-500 mt-5 text-left mb-5">
+                The number of illegal abortion is low compared to other neighbors’
+                countries and other countries in sub Saharan Africa. The capital
+                city of Rwanda, Kigali, counts one third of all abortions in
+                Rwanda.
+              </p>
+            </div>
+            <div>
+              <h1 className="text-2xl text-center mb-10 font-bold text-green-500">
+                Why access to abortion matters ?
+              </h1>
+              <AnimationRevealPage>
+                <div className="relative w-full flex">
+                  <div className="rounded-lg w-full grid grid-flow-row sm:grid-flow-row grid-cols-1 sm:grid-cols-3 py-9 divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-gray-100 bg-white-500 z-10">
+                    <div className="flex opacity-1 transform-noneitems-center justify-start sm:justify-center py-4 sm:py-6 w-8/12 px-4 sm:w-auto mx-auto sm:mx-0 mb-5">
+                      <div className="flex flex-col mx-auto w-40 sm:w-auto">
+                        <div className="flex items-center justify-center bg-green-100 w-12 h-12 mr-6 rounded-full">
+                          <div className="rounded-full">1</div>
+                        </div>
+                        <div className="flex flex-col">
+                          <p className="text-lg text-black-500">
+                            Abortion is a common health intervention. It is safe
+                            when carried out using a method recommended by WHO,
+                            appropriate to the pregnancy duration and by someone
+                            with the necessary skills.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex opacity-1 transform-none items-center justify-start sm:justify-center py-4 sm:py-6 w-8/12 px-4 sm:w-auto mx-auto sm:mx-0 mb-5">
+                      <div className="flex flex-col mx-auto w-40 sm:w-auto">
+                        <div className="flex items-center justify-center bg-green-100 w-12 h-12 mr-6 rounded-full">
+                          <div className="rounded-full">2</div>
+                        </div>
+                        <div className="flex flex-col">
+                          <p className="text-lg text-black-500">
+                            Six out of 10 of all unintended pregnancies end in an
+                            induced abortion
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex opacity-1 transform-none items-center justify-start sm:justify-center py-4 sm:py-6 w-8/12 px-4 sm:w-auto mx-auto sm:mx-0 mb-5">
+                      <div className="flex flex-col mx-auto w-40 sm:w-auto">
+                        <div className="flex items-center justify-center bg-green-100 w-12 h-12 mr-6 rounded-full">
+                          <div className="rounded-full">3</div>
+                        </div>
+                        <div className="flex flex-col">
+                          <p className="text-lg text-black-500">
+                            Around 45% of all abortions are unsafe, of which 97%
+                            take place in developing countries
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex opacity-1 transform-none items-center justify-start sm:justify-center py-4 sm:py-6 w-8/12 px-4 sm:w-auto mx-auto sm:mx-0 mb-5">
+                      <div className="flex flex-col mx-auto w-40 sm:w-auto">
+                        <div className="flex items-center justify-center bg-green-100 w-12 h-12 mr-6 rounded-full">
+                          <div className="rounded-full">4</div>
+                        </div>
+                        <div className="flex flex-col">
+                          <p className="text-lg text-black-500">
+                            Unsafe abortion is a leading – but preventable – cause
+                            of maternal deaths and morbidities. It can lead to
+                            physical and mental health complications and social and
+                            financial burdens for women, communities and health
+                            systems.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex opacity-1 transform-none items-center justify-start sm:justify-center py-4 sm:py-6 w-8/12 px-4 sm:w-auto mx-auto sm:mx-0 mb-5">
+                      <div className="flex flex-col mx-auto w-40 sm:w-auto">
+                        <div className="flex items-center justify-center bg-green-100 w-12 h-12 mr-6 rounded-full">
+                          <div className="rounded-full">5</div>
+                        </div>
+                        <div className="flex flex-col">
+                          <p className="text-lg text-black-500">
+                            Lack of access to safe, timely, affordable and
+                            respectful abortion care is a critical public health and
+                            human rights issue.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute filter: blur(114px) bg-black-600 opacity-5 w-11/12 roudned-lg h-64 sm:h-48 top-0 mt-8 mx-auto left-0 right-0"></div>
+                </div>
+              </AnimationRevealPage>
 
-          
+
+            </div>
           </div>
           <div
             className="max-w-screen-xl mt-8 mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto"
-            id="feature"
+            id="impact"
           >
-            <div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8 p y-8 my-12">
-              <div className="flex w-full justify-end">
-                <div className="h-full w-full p-4 opacity-1 transform-none">
-                  <h4 className="text-2xl mb-5 font-bold text-green-500">
-                    The situation of clandestine abortion in Rwanda.
-                  </h4>
-                  <p className="text-left text-sm mb-4">
-                    The health risk of an abortion is directly related to how
-                    and by whom the procedure is performed. Because of legal
-                    restrictions and stigma, women seeking abortions often
-                    resort to clandestine procedures, where safety cannot be
-                    assured.
-                  </p>
-                  <p className="text-left text-sm mb-4">
-                    Overall, half of all abortions in Rwanda are performed by
-                    untrained individuals and are considered to be very high
-                    risk, an estimated 34% are provided by traditional healers
-                    and 17% are induced by the women themselves.
-                  </p>
-                  <p className="text-left text-sm mb-4">
-                    About half of all abortions are provided by trained health
-                    professionals physicians (19%), nurses or medical assistants
-                    (16%) and trained midwives (14%). But many procedures do not
-                    take place in health facilities and result in complications.
-                  </p>
-                  <p className="text-left text-sm mb-4">
-                    Poor rural women are the most likely to go to untrained
-                    providers or to self-induce: Seventy-four percent of their
-                    abortions are from these sources, compared with 15% of those
-                    for non-poor women
-                  </p>
+            <AnimationRevealPage>
+              <div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8 p y-8 my-12">
+                <div className="flex w-full justify-end">
+                  <div className="h-full w-full p-4 opacity-1 transform-none">
+                    <h4 className="text-2xl mb-5 font-bold text-green-500">
+                      The situation of clandestine abortion in Rwanda.
+                    </h4>
+                    <p className="text-left text-sm mb-4">
+                      The health risk of an abortion is directly related to how
+                      and by whom the procedure is performed. Because of legal
+                      restrictions and stigma, women seeking abortions often
+                      resort to clandestine procedures, where safety cannot be
+                      assured.
+                    </p>
+                    <p className="text-left text-sm mb-4">
+                      Overall, half of all abortions in Rwanda are performed by
+                      untrained individuals and are considered to be very high
+                      risk, an estimated 34% are provided by traditional healers
+                      and 17% are induced by the women themselves.
+                    </p>
+                    <p className="text-left text-sm mb-4">
+                      About half of all abortions are provided by trained health
+                      professionals physicians (19%), nurses or medical assistants
+                      (16%) and trained midwives (14%). But many procedures do not
+                      take place in health facilities and result in complications.
+                    </p>
+                    <p className="text-left text-sm mb-4">
+                      Poor rural women are the most likely to go to untrained
+                      providers or to self-induce: Seventy-four percent of their
+                      abortions are from these sources, compared with 15% of those
+                      for non-poor women
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <div className="flex opacity-1 transform-none flex-col items-end justify-center ml-auto w-full lg:w-9/12">
-                  <h3 className="text-3xl lg:text-2xl font-medium leading-relaxed text-green-500">
-                    Some of reasons that may lead someone to illegal abortion
-                  </h3>
-                  <p className="my-2 text-black-500">
-                    There are many reasons that may prompt someone to do
-                    abortion at any cost. Here are some:
-                  </p>
-                  <ul className="text-black-500 self-start list-inside ml-8">
-                    <li className="relative flex opacity-1 transform-none circle-check custom-list">
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73"/>
-</svg>
-                      Her age.
-                    </li>
-                    <li className="relative flex circle-check custom-list opacity-1 transform-none">
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73"/>
-</svg>
-                      Her occupation
-                    </li>
-                    <li className="relative flex circle-check custom-list opacity-1 transform-none">
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73"/>
-</svg>
-                      Some medical conditions
-                    </li>
-                    <li className="relative flex circle-check custom-list opacity-1 transform-none">
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73"/>
-</svg>
-                      Unintended pregnancy
-                    </li>
-                    <li className="relative flex circle-check custom-list opacity-1 transform-none">
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73"/>
-</svg>
-                      Pregnancy resulted from rape
-                    </li>
-                    <li className="relative flex circle-check custom-list opacity-1 transform-none">
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73"/>
-</svg>
-                      Feeling not ready to be a parent
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div
-              className="bg-gradient-to-b from-white-300 to-white-500 w-full py-14"
-              id="pricing"
-            >
-              <div className="max-w-screen-xl px-6 sm:px-8 lg:px-16 mx-auto flex flex-col w-full text-center justify-center">
-                <div className="flex flex-col w-full">
-                  <div>
-                    <h3 className="text-2xl opacity-1 transform-none sm:text-3xl lg:text-4xl font-medium leading-relaxed mb-10 text-green-500">
-                      Health consequences of unsafe/illegal abortion
+                <div>
+                  <div className="relative flex opacity-1 transform-none flex-col items-end justify-center ml-auto w-full lg:w-9/12">
+                    <h3 className="text-3xl lg:text-2xl font-medium leading-relaxed text-green-500">
+                      Some of reasons that may lead someone to illegal abortion
                     </h3>
-                    <p className="leading-normal opacity-1 transform-none text-left mx-auto my-2 mb-4">
-                      Forty percent of Rwandan women having an abortion are
-                      subject to complications that require medical attention.
-                      Yet women are likely to experience complications at
-                      different rates based on where they obtain the abortion
-                      and who performed it. The complication rate is as high as
-                      54–55% among poor women in both rural and urban areas.
+                    <p className="my-2 text-black-500">
+                      There are many reasons that may prompt someone to do
+                      abortion at any cost. Here are some:
                     </p>
-                    <p className="leading-normal opacity-1 transform-none text-left mx-auto my-2 mb-4">
-                      Complication rates are highest for procedures that are
-                      induced by women themselves (67%) or are performed by
-                      traditional healers (61%), the kinds of procedures that
-                      poor rural women are more likely than other women to have.
-                    </p>
-                    <p className="leading-normal opacity-1 transform-none text-left mx-auto my-2 mb-4">
-                      Thirty percent of all women who develop complications do
-                      not receive the medical attention they need. This
-                      proportion is especially high among poor women, 38–43% of
-                      these women do not get care in facilities, compared with
-                      15–16% of non-poor women.
-                    </p>
-                    <p className="leading-normal opacity-1 transform-none text-left mx-auto my-2 mb-4 mt-10">
-                      Only in 2009, healthcare facility in Rwanda treated
-                      abortion complications on 17000 women who had illegal
-                      abortion. Briefly, here are some of the health related
-                      consequences of unsafe abortion:
-                    </p>
-
-                    <div className=" more w-1/2">
-                      <ul className="text-black-500 self-start list-inside ml-8">
-                        <li className="relative flex circle-check custom-list text-left">
-                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73"/>
-</svg>
-                          Post abortion infections
+                    <div ref={ref} >
+                      <motion.ul initial={{ y: y.initial }} animate={{
+                        y: inView && y.target,
+                        transitionEnd: {
+                          y: inView && 10,
+                        },
+                      }}
+                        transition={{ duration: 2 }} className="flex flex-col gap-1 text-black-500 absolute right-0 left-0">
+                        <li className="flex gap-3 items-center">
+                          <svg className="" width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
+                          </svg>
+                          Her age.
                         </li>
-                        <li
-                          className="relative flex opacity-1 transform-none circle-check custom-list text-left"
-                         
-                        ><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73"/>
-                        </svg>
-                          Post abortion infections
+                        <li className="flex gap-3 circle-check custom-list opacity-1 transform-none items-center">
+                          <svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
+                          </svg>
+                          Her occupation
                         </li>
-                        <li
-                          className="relative flex opacity-1 transform-none circle-check custom-list text-left"
-                          
-                        ><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73"/>
-                        </svg>
-                          Post abortion bleeding which can lead to death
+                        <li className="flex gap-3 circle-check custom-list opacity-1 transform-none items-center">
+                          <svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
+                          </svg>
+                          Some medical conditions
                         </li>
-                        <li
-                          className="relative flex opacity-1 transform-none circle-check custom-list text-left"
-                          
-                        ><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73"/>
-                        </svg>
-                          Sterility
+                        <li className="flex gap-3 circle-check custom-list opacity-1 transform-none items-center">
+                          <svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
+                          </svg>
+                          Unintended pregnancy
                         </li>
-                        <li
-                          className="relative flex opacity-1 transform-none circle-check custom-list text-left"
-                         
-                        ><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73"/>
-                        </svg>
-                          Post abortion mental illnesses
+                        <li className="flex gap-3 circle-check custom-list opacity-1 transform-none items-center">
+                          <svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
+                          </svg>
+                          <p className=""> Pregnancy remotion from rape</p>
                         </li>
-                        <li
-                          className="relative  flex opacity-1 transform-none circle-check custom-list text-left"
-                         
-                        ><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73"/>
-                        </svg>
-                          Post abortion hormonal imbalances
+                        <li className="flex gap-3 circle-check custom-list opacity-1 transform-none items-center">
+                          <svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
+                          </svg>
+                          Feeling not ready to be a parent
                         </li>
-                      </ul>
+                      </motion.ul>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="bg-white pt-44 pb-24">
-        <div
-          className="max-w-screen-xl w-full mx-auto px-6 sm:px-8 lg:px-16 grid grid-rows-6 sm:grid-rows-1 grid-flow-row sm:grid-flow-col grid-cols-3 sm:grid-cols-12 gap-4"
-        >
-          <div
-            className="row-span-2 sm:col-span-4 col-start-1 col-end-4 sm:col-end-5 flex flex-col items-start"
-          >
-            <p className="mb-4">
-              <strong className="font-medium">COMPANY NAME HERE</strong> is simply
-              dummy text of the printing and typesetting industry.
-            </p>
-            <div className="flex w-full mt-2 mb-8 -mx-2">
+            </AnimationRevealPage>
+            <AnimationRevealPage>
               <div
-                className="mx-2 bg-white-500 rounded-full items-center justify-center flex p-2 shadow-md"
+                className="bg-gradient-to-b from-white-300 to-white-500 w-full py-14"
+                id="pricing"
               >
-                <svg
-                  className="h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                >
-                  <path fill="none" d="M0 0h24v24H0z"></path>
-                  <path
-                    d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"
-                    fill="rgba(245,56,56,1)"
-                  ></path>
-                </svg>
+                <div className="max-w-screen-xl px-6 sm:px-8 lg:px-16 mx-auto flex flex-col w-full text-center justify-center">
+                  <div className="flex flex-col w-full">
+                    <div>
+                      <h3 className="text-2xl opacity-1 transform-none sm:text-3xl lg:text-4xl font-medium leading-relaxed mb-10 text-green-500">
+                        Health consequences of unsafe/illegal abortion
+                      </h3>
+                      <p className="leading-normal opacity-1 transform-none text-left mx-auto my-2 mb-4">
+                        Forty percent of Rwandan women having an abortion are
+                        subject to complications that require medical attention.
+                        Yet women are likely to experience complications at
+                        different rates based on where they obtain the abortion
+                        and who performed it. The complication rate is as high as
+                        54–55% among poor women in both rural and urban areas.
+                      </p>
+                      <p className="leading-normal opacity-1 transform-none text-left mx-auto my-2 mb-4">
+                        Complication rates are highest for procedures that are
+                        induced by women themselves (67%) or are performed by
+                        traditional healers (61%), the kinds of procedures that
+                        poor rural women are more likely than other women to have.
+                      </p>
+                      <p className="leading-normal opacity-1 transform-none text-left mx-auto my-2 mb-4">
+                        Thirty percent of all women who develop complications do
+                        not receive the medical attention they need. This
+                        proportion is especially high among poor women, 38–43% of
+                        these women do not get care in facilities, compared with
+                        15–16% of non-poor women.
+                      </p>
+                      <p className="leading-normal opacity-1 transform-none text-left mx-auto my-2 mb-4 mt-10">
+                        Only in 2009, healthcare facility in Rwanda treated
+                        abortion complications on 17000 women who had illegal
+                        abortion. Briefly, here are some of the health related
+                        consequences of unsafe abortion:
+                      </p>
+
+                      <div className=" more w-1/2">
+                        <ul className="text-black-500 self-start list-inside ml-8">
+                          <li className="relative flex circle-check custom-list text-left hover:scale-110 hover:-translate-x-10 duration-300 hover:tracking-wide">
+                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
+                            </svg>
+                            Post abortion infections
+                          </li>
+                          <li
+                            className="relative flex opacity-1 transform-none circle-check custom-list text-left hover:scale-110 hover:-translate-x-10 duration-300 hover:tracking-wide"
+
+                          ><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
+                            </svg>
+                            Post abortion infections
+                          </li>
+                          <li
+                            className="relative flex opacity-1 transform-none circle-check custom-list text-left hover:scale-110 hover:-translate-x-10 duration-300 hover:tracking-wide"
+
+                          ><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
+                            </svg>
+                            Post abortion bleeding which can lead to death
+                          </li>
+                          <li
+                            className="relative flex opacity-1 transform-none circle-check custom-list text-left hover:scale-110 hover:-translate-x-10 duration-300 hover:tracking-wide"
+
+                          ><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
+                            </svg>
+                            Sterility
+                          </li>
+                          <li
+                            className="relative flex opacity-1 transform-none circle-check custom-list text-left hover:scale-110 hover:-translate-x-10 duration-300 hover:tracking-wide"
+
+                          ><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
+                            </svg>
+                            Post abortion mental illnesses
+                          </li>
+                          <li
+                            className="relative  flex opacity-1 transform-none circle-check custom-list text-left hover:scale-110 hover:-translate-x-10 duration-300 hover:tracking-wide"
+
+                          ><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
+                            </svg>
+                            Post abortion hormonal imbalances
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div
-                className="mx-2 bg-white-500 rounded-full items-center justify-center flex p-2 shadow-md"
-              >
-                <svg
-                  className="h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                >
-                  <path fill="none" d="M0 0h24v24H0z"></path>
-                  <path
-                    d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z"
-                    fill="rgba(245,56,56,1)"
-                  ></path>
-                </svg>
-              </div>
-              <div
-                className="mx-2 bg-white-500 rounded-full items-center justify-center flex p-2 shadow-md"
-              >
-                <svg
-                  className="h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                >
-                  <path fill="none" d="M0 0h24v24H0z"></path>
-                  <path
-                    d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"
-                    fill="rgba(245,56,56,1)"
-                  ></path>
-                </svg>
-              </div>
-            </div>
-            <p className="text-gray-400">
-              ©2023
-              - company name
-            </p>
+            </AnimationRevealPage>
           </div>
-          <div
-            className="row-span-2 sm:col-span-2 sm:col-start-7 sm:col-end-9 flex flex-col"
-          >
-            <p className="text-black-600 mb-4 font-medium text-lg">Quick Links</p>
-            <ul className="text-black-500">
-              <li
-                className="my-2 hover:text-green-500 cursor-pointer transition-all"
-              >
-                Home
-              </li>
-              <li
-                className="my-2 hover:text-green-500 cursor-pointer transition-all"
-              >
-                Abortion Resources
-              </li>
-              <li
-                className="my-2 hover:text-green-500 cursor-pointer transition-all"
-              >
-                Impact Model
-              </li>
-              <li
-                className="my-2 hover:text-green-500 cursor-pointer transition-all"
-              >
-                Partnership
-              </li>
-            </ul>
-          </div>
-          <div
-            className="row-span-2 sm:col-span-2 sm:col-start-9 sm:col-end-11 flex flex-col"
-          >
-            <p className="text-black-600 mb-4 font-medium text-lg">
-              Terms &amp; Conditions
-            </p>
-            <ul className="text-black-500">
-              <li
-                className="my-2 hover:text-green-500 cursor-pointer transition-all"
-              >
-                Declarations
-              </li>
-              <li
-                className="my-2 hover:text-green-500 cursor-pointer transition-all"
-              >
-                Privacy Policy
-              </li>
-              <li
-                className="my-2 hover:text-green-500 cursor-pointer transition-all"
-              >
-                Terms of Service
-              </li>
-            </ul>
-          </div>
-          <div
-            className="row-span-2 sm:col-span-2 sm:col-start-11 sm:col-end-13 flex flex-col"
-          >
-            <p className="text-black-600 mb-4 font-medium text-lg">Help Center</p>
-            <ul className="text-black-500">
-              <li
-                className="my-2 hover:text-green-500 cursor-pointer transition-all"
-              >
-                Tollfree:9999
-              </li>
-              <li
-                className="my-2 hover:text-green-500 cursor-pointer transition-all"
-              >
-                Email:example@example.com
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+          <Footer />
         </div>
       </div>
     </div>
