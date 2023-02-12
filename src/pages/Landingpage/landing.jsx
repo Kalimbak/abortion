@@ -39,7 +39,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
   window.addEventListener('scroll', onScroll)
   return (
     <div id="home" data-new-gr-c-s-check-loaded="14.1096.0" data-gr-ext-installed="">
-      <div data-reactroot="">
+      <div id="_next"data-reactroot="">
         <header id="home" className={navbar ? 'fixed top-0 w-full z-30 bg-white transition-all shadow-md pt-0' : "fixed top-0 w-full z-30 bg-white transition-all pt-3"}>
           <nav className="max-w-screen-xl px-6 sm:px-8 lg:px-16 mx-auto grid grid-flow-col py-3 sm:py-4">
             <div className="col-start-1 col-end-2 flex items-center">
@@ -48,7 +48,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
             <ul className="hidden lg:flex col-start-4 col-end-8 text-black-500 items-center">
               {routes.map((route) => {
                 return (
-                  <button onClick={() => handleClick(route.id)} key={route.id} href={route.url} className={`px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative text-green-500  hover:border-b-2 hover:border-green-500 ${selected === route.id ? 'border-b-2 border-green-500' : ""}`}>{route.name}</button>
+                  <a onClick={() => handleClick(route.id)} key={route.id} href={route.url} className={`px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative text-green-500  hover:border-b-2 hover:border-green-500 ${route.isActive ? 'border-b-2 border-green-500' : ""} ${selected === route.id ? 'border-b-2 border-green-500' : ""}`}>{route.name}</a>
                 )
               })}
             </ul>

@@ -1,9 +1,11 @@
 const routes = [
+
+ 
   {
     id: 1,
     name: "Home",
     url: "/#home",
-    isActive: true
+    isActive: false
   },
   {
     id: 2,
