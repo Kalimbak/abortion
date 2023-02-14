@@ -11,6 +11,12 @@
       padding: 0;
       position: relative;
 }
+#more{
+    display: none;
+}
+#dots:active{
+    display:none;
+}
 .two{
     box-sizing: border-box;
        display: block;
@@ -124,3 +130,8 @@ img{
                  transform: none;
                  opacity: 1; transform: none;
 }
+
+
+
+
+

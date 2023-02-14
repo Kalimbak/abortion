@@ -8,8 +8,38 @@ import routes from "../../utils/routes";
 import { motion } from "framer-motion";
 import useInView from "../../helpers/useInView";
 
+// const ReadMore = ({ children }) => {
+//   const text = children;
+//   const [isReadMore, setIsReadMore] = useState(true);
+//   const toggleReadMore = () => {
+//     setIsReadMore(!isReadMore);
+//   };
+//   return (
+//     <p className="text">
+//       {isReadMore ? text.slice(0, 200) : text}
+//       <span onClick={toggleReadMore} className="read-or-hide display-inline">
+//         {isReadMore ? "...read more" : " show less"}
+//       </span>
+//     </p>
+//   );
+// };
 
+// const myFunction = () =>{
+//   console.log("hello")
+//   const dots = document.getElementById("dots");
+//   const moreText = document.getElementById("more");
+//   const btnText = document.getElementById("myBtn");
 
+//   if (dots.style.display === "none") {
+//     // dots.style.display = "inline";
+//     btnText.innerHTML = "Read more";
+//     // moreText.style.display = "none";
+//   } else {
+//     dots.style.display = "none";
+//     btnText.innerHTML = "Read less";
+//     // moreText.style.display = "inline";
+//   }
+// }
 
 export const Landing = ({ direction = "up", offset = 100 }) => {
   const [selected, setSelected] = useState()
@@ -26,6 +56,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
 
   // const router = useRouter()
   const [navbar, setNavbar] = useState(false);
+  const [showMore, setShowMore] = useState(false);
 
   const onScroll = () => {
     if (window.scrollY >= 20) {
@@ -53,7 +84,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
               })}
             </ul>
             <div className="col-start-10 col-end-12 font-medium flex justify-end items-center">
-              <button className="font-medium tracking-wide py-2 px-5 sm:px-8 border border-green-500 text-green-500 bg-white-500 outline-none rounded-l-full rounded-r-full capitalize hover:bg-green-500 hover:text-white transition-all hover:shadow-green">
+              <button className="font-medium tracking-wide py-2 px-5 sm:px-8 border border-green-800 text-green-800 bg-white-500 outline-none rounded-l-full rounded-r-full capitalize hover:bg-green-800 hover:text-white transition-all hover:shadow-green">
                 Get involved
               </button>
             </div>
@@ -64,7 +95,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
             <div>
               <div className="grid grid-flow-row opacity-1 transform-none sm:grid-flow-col grid-rows-2 md:grid-rows-1 sm:grid-cols-2 gap-8 py-6 sm:py-16">
                 <div className="flex flex-col justify-center items-start row-start-2 sm:row-start-1">
-                  <h2 className="text-3xl font-bold text-left text-green-500">
+                  <h2 className="text-3xl font-bold text-left text-green-800">
                     Abortion
                   </h2>
                   <p className="text-black-500 mt-5">
@@ -121,29 +152,38 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
           </AnimationRevealPage>
           <div id="abortion">
             <div className="container">
-              <h1 className="text-2xl text-center mb-10 font-bold text-green-500">
+              <h1 className="text-2xl text-center mb-8 font-bold text-green-800">
                 What is abortion? What’s the status of it in Rwanda?
               </h1>
+              {/* <ReadMore> */}
+              
               <p className="text-black-500 mt-5 text-left">
                 Abortion is defined as the termination of pregnancy before 20
                 weeks of pregnancy. Some of the countries even go up to 28 weeks
                 of pregnancy
               </p>
+              <span  style={{ display: showMore ? 'block' : 'none' }} >
               <p className="text-black-500 mt-5 text-left">
                 Although, abortion in Rwanda is illegal, in 2009 about 60,000
                 women and girls had abortion, according to the research of
                 University of Rwanda, School of Public health. On average it’s 25
                 women in 1000 aged between 14 and 44.
               </p>
+            
               <p className="text-black-500 mt-5 text-left mb-5">
                 The number of illegal abortion is low compared to other neighbors’
                 countries and other countries in sub Saharan Africa. The capital
                 city of Rwanda, Kigali, counts one third of all abortions in
                 Rwanda.
               </p>
+              {/* </ReadMore> */}
+              </span>
+              <button onClick={() => setShowMore(!showMore)} className="font-medium mt-2 tracking-wide py-1 px-5 sm:px-8 border border-green-800 text-green-800 bg-white-500 outline-none rounded-l-full rounded-r-full capitalize hover:bg-green-800 hover:text-white transition-all hover:shadow-green">
+        {showMore ? 'Read Less' : 'Read More'}
+      </button>
             </div>
             <div>
-              <h1 className="text-2xl text-center mb-10 font-bold text-green-500">
+              <h1 className="text-2xl text-center mb-8 font-bold text-green-800">
                 Why access to abortion matters ?
               </h1>
               <AnimationRevealPage>
@@ -229,14 +269,14 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
             </div>
           </div>
           <div
-            className="max-w-screen-xl mt-8 mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto"
+            className="max-w-screen-xl mt-4 mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto"
             id="impact"
           >
             <AnimationRevealPage>
-              <div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8 p y-8 my-12">
+              <div className="grid grid-flow-row mt-2 sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8 p y-8 my-12">
                 <div className="flex w-full justify-end">
                   <div className="h-full w-full p-4 opacity-1 transform-none">
-                    <h4 className="text-2xl mb-5 font-bold text-green-500">
+                    <h4 className="text-2xl mb-5 font-bold text-green-800">
                       The situation of clandestine abortion in Rwanda.
                     </h4>
                     <p className="text-left text-sm mb-4">
@@ -246,6 +286,8 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                       resort to clandestine procedures, where safety cannot be
                       assured.
                     </p>
+                    <span  style={{ display: showMore ? 'block' : 'none' }} >
+
                     <p className="text-left text-sm mb-4">
                       Overall, half of all abortions in Rwanda are performed by
                       untrained individuals and are considered to be very high
@@ -264,11 +306,15 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                       abortions are from these sources, compared with 15% of those
                       for non-poor women
                     </p>
+                    </span>
+                    <button onClick={() => setShowMore(!showMore)} className="font-medium mt-2 tracking-wide py-1 px-5 sm:px-8 border border-green-800 text-green-800 bg-white-500 outline-none rounded-l-full rounded-r-full capitalize hover:bg-green-800 hover:text-white transition-all hover:shadow-green">
+        {showMore ? 'Read Less' : 'Read More'}
+      </button>
                   </div>
                 </div>
                 <div>
-                  <div className="relative flex opacity-1 transform-none flex-col items-end justify-center ml-auto w-full lg:w-9/12">
-                    <h3 className="text-3xl lg:text-2xl font-medium leading-relaxed text-green-500">
+                  <div className="relative mb-1 flex opacity-1 transform-none flex-col items-end justify-center ml-auto w-full lg:w-9/12">
+                    <h3 className="text-3xl lg:text-2xl font-medium leading-relaxed text-green-800">
                       Some of reasons that may lead someone to illegal abortion
                     </h3>
                     <p className="my-2 text-black-500">
@@ -295,6 +341,8 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                           </svg>
                           Her occupation
                         </li>
+                        <span  style={{ display: showMore ? 'block' : 'none' }} >
+
                         <li className="flex gap-3 circle-check custom-list opacity-1 transform-none items-center">
                           <svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
@@ -319,6 +367,10 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                           </svg>
                           Feeling not ready to be a parent
                         </li>
+                        </span>
+                        {/* <button onClick={() => setShowMore(!showMore)} className="font-medium mt-2 mb-8 tracking-wide py-1 px-5 sm:px-8 border border-green-800 text-green-800 bg-white-500 outline-none rounded-l-full rounded-r-full capitalize hover:bg-green-800 hover:text-white transition-all hover:shadow-green">
+        {showMore ? 'Read Less' : 'Read More'}
+      </button> */}
                       </motion.ul>
                     </div>
                   </div>
@@ -327,13 +379,13 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
             </AnimationRevealPage>
             <AnimationRevealPage>
               <div
-                className="bg-gradient-to-b from-white-300 to-white-500 w-full py-14"
+                className="bg-gradient-to-b  mb-8 mt-8 from-white-300 to-white-500 w-full py-14"
                 id="pricing"
               >
-                <div className="max-w-screen-xl px-6 sm:px-8 lg:px-16 mx-auto flex flex-col w-full text-center justify-center">
+                <div className="max-w-screen-xl mt-8 px-6 sm:px-8 lg:px-16 mx-auto flex flex-col w-full text-center justify-center">
                   <div className="flex flex-col w-full">
                     <div>
-                      <h3 className="text-2xl opacity-1 transform-none sm:text-3xl lg:text-4xl font-medium leading-relaxed mb-10 text-green-500">
+                      <h3 className="text-2xl opacity-1 transform-none sm:text-3xl lg:text-4xl font-medium leading-relaxed mb-8 mt-5 text-green-800">
                         Health consequences of unsafe/illegal abortion
                       </h3>
                       <p className="leading-normal opacity-1 transform-none text-left mx-auto my-2 mb-4">
@@ -344,6 +396,8 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                         and who performed it. The complication rate is as high as
                         54–55% among poor women in both rural and urban areas.
                       </p>
+                      <span  style={{ display: showMore ? 'block' : 'none' }} >
+
                       <p className="leading-normal opacity-1 transform-none text-left mx-auto my-2 mb-4">
                         Complication rates are highest for procedures that are
                         induced by women themselves (67%) or are performed by
@@ -414,6 +468,10 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                           </li>
                         </ul>
                       </div>
+                      </span>
+                      <button onClick={() => setShowMore(!showMore)} className="font-medium mt-2 tracking-wide py-1 px-5 sm:px-8 border border-green-800 text-green-800 bg-white-500 outline-none rounded-l-full rounded-r-full capitalize hover:bg-green-800 hover:text-white transition-all hover:shadow-green">
+        {showMore ? 'Read Less' : 'Read More'}
+      </button>
                     </div>
                   </div>
                 </div>
