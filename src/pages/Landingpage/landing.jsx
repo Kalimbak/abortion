@@ -21,6 +21,8 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
   // const router = useRouter()
   const [navbar, setNavbar] = useState(false);
   const [showMore, setShowMore] = useState(false);
+  const [showMore1, setShowMore1 ] = useState(false);
+  const [showMore2, setShowMore2 ] = useState(false);
 
   const onScroll = () => {
     if (window.scrollY >= 20) {
@@ -325,7 +327,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                       resort to clandestine procedures, where safety cannot be
                       assured.
                     </p>
-                    <span  style={{ display: showMore ? 'block' : 'none' }} >
+                    <span  style={{ display: showMore1 ? 'block' : 'none' }} >
 
                     <p className="text-left text-sm mb-4">
                       Overall, half of all abortions in Rwanda are performed by
@@ -346,8 +348,8 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                       for non-poor women
                     </p>
                     </span>
-                    <button onClick={() => setShowMore(!showMore)} className="font-medium mt-2 tracking-wide py-1 px-5 sm:px-8 border border-green-800 text-green-800 bg-white-500 outline-none rounded-l-full rounded-r-full capitalize hover:bg-green-800 hover:text-white transition-all hover:shadow-green">
-        {showMore ? 'Read Less' : 'Read More'}
+                    <button onClick={() => setShowMore1(!showMore1)} className="font-medium mt-2 tracking-wide py-1 px-5 sm:px-8 border border-green-800 text-green-800 bg-white-500 outline-none rounded-l-full rounded-r-full capitalize hover:bg-green-800 hover:text-white transition-all hover:shadow-green">
+        {showMore1 ? 'Read Less' : 'Read More'}
       </button>
                   </div>
                 </div>
@@ -435,7 +437,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                         and who performed it. The complication rate is as high as
                         54–55% among poor women in both rural and urban areas.
                       </p>
-                      <span  style={{ display: showMore ? 'block' : 'none' }} >
+                      <span  style={{ display: showMore2 ? 'block' : 'none' }} >
 
                       <p className="leading-normal opacity-1 transform-none text-left mx-auto my-2 mb-4">
                         Complication rates are highest for procedures that are
@@ -508,8 +510,8 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                         </ul>
                       </div>
                       </span>
-                      <button onClick={() => setShowMore(!showMore)} className="font-medium mt-2 tracking-wide py-1 px-5 sm:px-8 border border-green-800 text-green-800 bg-white-500 outline-none rounded-l-full rounded-r-full capitalize hover:bg-green-800 hover:text-white transition-all hover:shadow-green">
-        {showMore ? 'Read Less' : 'Read More'}
+                      <button onClick={() => setShowMore2(!showMore2)} className="font-medium mt-2 tracking-wide py-1 px-5 sm:px-8 border border-green-800 text-green-800 bg-white-500 outline-none rounded-l-full rounded-r-full capitalize hover:bg-green-800 hover:text-white transition-all hover:shadow-green">
+        {showMore2 ? 'Read Less' : 'Read More'}
       </button>
                     </div>
                   </div>
