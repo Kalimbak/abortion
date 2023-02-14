@@ -8,38 +8,7 @@ import routes from "../../utils/routes";
 import { motion } from "framer-motion";
 import useInView from "../../helpers/useInView";
 
-// const ReadMore = ({ children }) => {
-//   const text = children;
-//   const [isReadMore, setIsReadMore] = useState(true);
-//   const toggleReadMore = () => {
-//     setIsReadMore(!isReadMore);
-//   };
-//   return (
-//     <p className="text">
-//       {isReadMore ? text.slice(0, 200) : text}
-//       <span onClick={toggleReadMore} className="read-or-hide display-inline">
-//         {isReadMore ? "...read more" : " show less"}
-//       </span>
-//     </p>
-//   );
-// };
 
-// const myFunction = () =>{
-//   console.log("hello")
-//   const dots = document.getElementById("dots");
-//   const moreText = document.getElementById("more");
-//   const btnText = document.getElementById("myBtn");
-
-//   if (dots.style.display === "none") {
-//     // dots.style.display = "inline";
-//     btnText.innerHTML = "Read more";
-//     // moreText.style.display = "none";
-//   } else {
-//     dots.style.display = "none";
-//     btnText.innerHTML = "Read less";
-//     // moreText.style.display = "inline";
-//   }
-// }
 
 export const Landing = ({ direction = "up", offset = 100 }) => {
   const [selected, setSelected] = useState()
@@ -90,6 +59,81 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
             </div>
           </nav>
         </header>
+        <nav className="fixed lg:hidden bottom-0 left-0 right-0 z-20 px-4 sm:px-8 shadow-t bg-white">
+          <div className="bg-white-500 sm:px-3">
+            <ul className="flex w-full justify-between items-center text-black-500">
+             
+               <a href="./" className="mx-1 sm:mx-2 px-3 sm:px-4 py-2 flex flex-col items-center text-xs border-t-2 transition-all border-green-800 text-green-800 ">
+               <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                Home
+              </a>
+              <a href="/#abortion" className="mx-1 sm:mx-2 px-3 sm:px-4 py-2 flex flex-col items-center text-xs border-t-2 transition-all border-transparent">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                  ></path>
+                </svg>
+                Abortion Resources
+              </a>
+              <a href="/#impact" className="mx-1 sm:mx-2 px-3 sm:px-4 py-2 flex flex-col items-center text-xs border-t-2 transition-all  ">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                Impact Model
+              </a>
+              <a href="/#partnership" className="mx-1 sm:mx-2 px-3 sm:px-4 py-2 flex flex-col items-center text-xs border-t-2 transition-all border-transparent">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  ></path>
+                </svg>
+                Partnership
+              </a>
+            </ul>
+          </div>
+        </nav>
         <div className="max-w-screen-xl mt-10 px-8 xl:px-16 mx-auto" id="about">
           <AnimationRevealPage>
             <div>
