@@ -44,13 +44,13 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
       <div id="_next"data-reactroot="">
         <header id="home" className={navbar ? 'fixed top-0 w-full z-30 bg-white transition-all shadow-md pt-0' : "fixed top-0 w-full z-30 bg-white transition-all pt-3"}>
           <nav className="max-w-screen-xl px-6 sm:px-8 lg:px-16 mx-auto grid grid-flow-col py-3 sm:py-4">
-            <div className="col-start-1 col-end-2 flex items-center">
-              <strong>LOGO HERE</strong>
+            <div href="./" className="col-start-1 col-end-2 flex items-center">
+              <strong href="./">LOGO HERE</strong>
             </div>
             <ul className="hidden lg:flex col-start-4 col-end-8 text-black-500 items-center">
               {routes.map((route) => {
                 return (
-                  <a onClick={() => handleClick(route.id)} key={route.id} href={route.url} className={`px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative text-green-500  hover:border-b-2 hover:border-green-500 ${route.isActive ? 'border-b-2 border-green-500' : ""} ${selected === route.id ? 'border-b-2 border-green-500' : ""}`}>{route.name}</a>
+                  <a onClick={() => handleClick(route.id)} key={route.id} href={route.url} className={`px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative text-green-800  hover:border-b-2 hover:border-green-800 ${route.isActive ? 'border-b-2 border-green-800' : ""} ${selected === route.id ? 'border-b-2 border-green-800' : ""}`}>{route.name}</a>
                 )
               })}
             </ul>
@@ -198,7 +198,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
           </AnimationRevealPage>
           <div id="abortion">
             <div className="container">
-              <h1 className="text-2xl text-center mb-8 font-bold text-green-800">
+              <h1 className="text-3xl text-center mb-8 font-bold text-green-800">
                 What is abortion? What’s the status of it in Rwanda?
               </h1>
               {/* <ReadMore> */}
@@ -229,7 +229,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
       </button>
             </div>
             <div>
-              <h1 className="text-2xl text-center mb-8 font-bold text-green-800">
+              <h1 className="text-3xl text-center mb-8 font-bold text-green-800">
                 Why access to abortion matters ?
               </h1>
               <AnimationRevealPage>
@@ -241,7 +241,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                           <div className="rounded-full">1</div>
                         </div>
                         <div className="flex flex-col">
-                          <p className="text-lg text-black-500">
+                          <p className="text-1xl text-black-500">
                             Abortion is a common health intervention. It is safe
                             when carried out using a method recommended by WHO,
                             appropriate to the pregnancy duration and by someone
@@ -256,7 +256,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                           <div className="rounded-full">2</div>
                         </div>
                         <div className="flex flex-col">
-                          <p className="text-lg text-black-500">
+                          <p className="text-1xl text-black-500">
                             Six out of 10 of all unintended pregnancies end in an
                             induced abortion
                           </p>
@@ -269,7 +269,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                           <div className="rounded-full">3</div>
                         </div>
                         <div className="flex flex-col">
-                          <p className="text-lg text-black-500">
+                          <p className="text-1xl text-black-500">
                             Around 45% of all abortions are unsafe, of which 97%
                             take place in developing countries
                           </p>
@@ -282,7 +282,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                           <div className="rounded-full">4</div>
                         </div>
                         <div className="flex flex-col">
-                          <p className="text-lg text-black-500">
+                          <p className="text-1xl text-black-500">
                             Unsafe abortion is a leading – but preventable – cause
                             of maternal deaths and morbidities. It can lead to
                             physical and mental health complications and social and
@@ -298,7 +298,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                           <div className="rounded-full">5</div>
                         </div>
                         <div className="flex flex-col">
-                          <p className="text-lg text-black-500">
+                          <p className="text-1xl text-black-500">
                             Lack of access to safe, timely, affordable and
                             respectful abortion care is a critical public health and
                             human rights issue.
@@ -322,7 +322,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
               <div className="grid grid-flow-row mt-2 sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8 p y-8 my-12">
                 <div className="flex w-full justify-end">
                   <div className="h-full w-full p-4 opacity-1 transform-none">
-                    <h4 className="text-2xl mb-5 font-bold text-green-800">
+                    <h4 className="text-3xl mb-5 font-bold text-green-800">
                       The situation of clandestine abortion in Rwanda.
                     </h4>
                     <p className="text-left text-sm mb-4">
@@ -375,48 +375,45 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                         },
                       }}
                         transition={{ duration: 2 }} className="flex flex-col gap-1 text-black-500 absolute right-0 left-0">
-                        <li className="flex gap-3 items-center">
+                         <li className="flex gap-3 items-center hover:-ml-5">
                           <svg className="" width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
                           </svg>
                           Her age.
                         </li>
-                        <li className="flex gap-3 circle-check custom-list opacity-1 transform-none items-center">
+                        <li className="flex gap-3 circle-check custom-list opacity-1 transform-none items-center hover:-ml-5">
                           <svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
                           </svg>
                           Her occupation
                         </li>
-                        <span  style={{ display: showMore ? 'block' : 'none' }} >
-
-                        <li className="flex gap-3 circle-check custom-list opacity-1 transform-none items-center">
+                        <li className="flex gap-3 circle-check custom-list opacity-1 transform-none items-center hover:-ml-5">
                           <svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
                           </svg>
                           Some medical conditions
                         </li>
-                        <li className="flex gap-3 circle-check custom-list opacity-1 transform-none items-center">
+                        <li className="flex gap-3 circle-check custom-list opacity-1 transform-none items-center hover:-ml-5">
                           <svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
                           </svg>
                           Unintended pregnancy
                         </li>
-                        <li className="flex gap-3 circle-check custom-list opacity-1 transform-none items-center">
+                    <span  style={{ display: showMore1 ? 'block' : 'none' }} >
+
+                        <li className="flex gap-3 circle-check custom-list opacity-1 transform-none items-center hover:-ml-5">
                           <svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
                           </svg>
                           <p className=""> Pregnancy remotion from rape</p>
                         </li>
-                        <li className="flex gap-3 circle-check custom-list opacity-1 transform-none items-center">
+                        <li className="flex gap-3 circle-check custom-list opacity-1 transform-none items-center hover:-ml-5">
                           <svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.1215 2.54932C6.60746 2.54932 2.12146 7.03532 2.12146 12.5493C2.12146 18.0633 6.60746 22.5493 12.1215 22.5493C17.6355 22.5493 22.1215 18.0633 22.1215 12.5493C22.1215 7.03532 17.6355 2.54932 12.1215 2.54932ZM10.1225 16.9623L7.11691 13.9632C6.72616 13.5733 6.72537 12.9405 7.11515 12.5496C7.50517 12.1585 8.13847 12.1578 8.52939 12.548L10.1205 14.1363L14.7075 9.54932C15.0979 9.15885 15.731 9.15885 16.1215 9.54932C16.5119 9.93978 16.5119 10.5729 16.1215 10.9633L10.1225 16.9623Z" fill="#2FAB73" />
                           </svg>
                           Feeling not ready to be a parent
                         </li>
                         </span>
-                        {/* <button onClick={() => setShowMore(!showMore)} className="font-medium mt-2 mb-8 tracking-wide py-1 px-5 sm:px-8 border border-green-800 text-green-800 bg-white-500 outline-none rounded-l-full rounded-r-full capitalize hover:bg-green-800 hover:text-white transition-all hover:shadow-green">
-        {showMore ? 'Read Less' : 'Read More'}
-      </button> */}
                       </motion.ul>
                     </div>
                   </div>
@@ -425,10 +422,10 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
             </AnimationRevealPage>
             <AnimationRevealPage>
               <div
-                className="bg-gradient-to-b  mb-8 mt-8 from-white-300 to-white-500 w-full py-14"
+                className="bg-gradient-to-b from-white-300 to-white-500 w-full py-14"
                 id="pricing"
               >
-                <div className="max-w-screen-xl mt-8 px-6 sm:px-8 lg:px-16 mx-auto flex flex-col w-full text-center justify-center">
+                <div className="max-w-screen-xl px-6 sm:px-8 lg:px-16 mx-auto flex flex-col w-full text-center justify-center">
                   <div className="flex flex-col w-full">
                     <div>
                       <h3 className="text-2xl opacity-1 transform-none sm:text-3xl lg:text-4xl font-medium leading-relaxed mb-8 mt-5 text-green-800">
