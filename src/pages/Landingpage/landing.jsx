@@ -1,12 +1,26 @@
 import React from "react";
 import "./landing.css";
-import Pic from "../../image.png";
+// import Pic from "../../image1.png";
+import Pics from "../image/image.svg";
 import { useState } from "react";
 import AnimationRevealPage from "../../helpers/AnimationRevealPage";
 import { Footer } from "../../components/Footer/footer";
 import routes from "../../utils/routes";
 import { motion } from "framer-motion";
 import useInView from "../../helpers/useInView";
+// import icon from "../image/Icon1.svg"
+// // import icon1 from "../image/Icon2.svg"
+// // import icon2 from "../image/Icon3.svg"
+// import icon3 from "../image/Icon4.png"
+// import icon4 from "../image/Icon5.svg"
+// import icon5 from "../image/Icon6.svg"
+// import icon6 from "../image/Icon7.svg"
+// import icon7 from "../image/Icon8.svg"
+// import icon8 from "../image/Icon14.svg"
+// import icon9 from "../image/Icon10.svg"
+// import icon0 from "../image/Icon11.svg"
+// import icon11 from "../image/Icon12.svg"
+// import icon12 from "../image/Icon13.svg"
 
 
 
@@ -25,9 +39,9 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
 
   // const router = useRouter()
   const [navbar, setNavbar] = useState(false);
-  const [showMore, setShowMore] = useState(false);
+  // const [showMore, setShowMore] = useState(false);
   const [showMore1, setShowMore1 ] = useState(false);
-  const [showMore2, setShowMore2 ] = useState(false);
+  // const [showMore2, setShowMore2 ] = useState(false);
 
   const onScroll = () => {
     if (window.scrollY >= 20) {
@@ -159,16 +173,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                     being pregnant in old age. Some of the families used to do
                     some ceremonies to protect their young girls to be pregnant.
                   </p>
-                  <p className="text-black-500 mt-5">
-                    This shows that the issue of avoiding pregnancy is not recent
-                    as you may think. It was done even the introduction of
-                    different contraceptive methods. But with the modern medicine,
-                    preventing pregnant was made easy. However, still, a great
-                    number of girls and women have unwanted pregnancies. Some of
-                    them may wish to abort at any cost. In the country like ours
-                    where abortion is illegal, a considerable number of women and
-                    girls opt unsafe abortion.
-                  </p>
+                
                 </div>
                 <div className="flex w-full">
                   <div className="h-full w-full opacity-1 transform-none">
@@ -176,7 +181,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                       <span className="two"></span>
                       <img
                         alt="VPN Illustrasi"
-                        src={Pic}
+                        src={Pics}
                         decoding="async"
                         data-nimg="responsive"
                         className="img"
@@ -186,7 +191,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                         <img
                           alt="VPN Illustrasi"
                           sizes="100vw"
-                          src={Pic}
+                          src={Pics}
                           loading="lazy"
                         />
                       </noscript>
@@ -196,7 +201,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
               </div>
             </div>
           </AnimationRevealPage>
-          <div id="abortion">
+          <div id="abortion" className="bg-white-800">
             <div className="container">
               <h1 className="text-3xl text-center mb-8 font-bold text-green-800">
                 What is abortion? What’s the status of it in Rwanda?
@@ -208,7 +213,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                 weeks of pregnancy. Some of the countries even go up to 28 weeks
                 of pregnancy
               </p>
-              <span  style={{ display: showMore ? 'block' : 'none' }} >
+              {/* <span  style={{ display: showMore ? 'block' : 'none' }} > */}
               <p className="text-black-500 mt-5 text-left">
                 Although, abortion in Rwanda is illegal, in 2009 about 60,000
                 women and girls had abortion, according to the research of
@@ -223,10 +228,10 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                 Rwanda.
               </p>
               {/* </ReadMore> */}
-              </span>
-              <button onClick={() => setShowMore(!showMore)} className="font-medium mt-2 tracking-wide py-1 px-5 sm:px-8 border border-green-800 text-green-800 bg-white-500 outline-none rounded-l-full rounded-r-full capitalize hover:bg-green-800 hover:text-white transition-all hover:shadow-green">
+              {/* </span> */}
+              {/* <button onClick={() => setShowMore(!showMore)} className="font-medium mt-2 tracking-wide py-1 px-5 sm:px-8 border border-green-800 text-green-800 bg-white-500 outline-none rounded-l-full rounded-r-full capitalize hover:bg-green-800 hover:text-white transition-all hover:shadow-green">
         {showMore ? 'Read Less' : 'Read More'}
-      </button>
+      </button> */}
             </div>
             <div>
               <h1 className="text-3xl text-center mb-8 font-bold text-green-800">
@@ -360,7 +365,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                 </div>
                 <div>
                   <div className="relative mb-1 flex opacity-1 transform-none flex-col items-end justify-center ml-auto w-full lg:w-9/12">
-                    <h3 className="text-3xl lg:text-2xl font-medium leading-relaxed text-green-800">
+                    <h3 className="text-3xl lg:text-2xl font-bold leading-relaxed text-green-800">
                       Some of reasons that may lead someone to illegal abortion
                     </h3>
                     <p className="my-2 text-black-500">
@@ -428,7 +433,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                 <div className="max-w-screen-xl px-6 sm:px-8 lg:px-16 mx-auto flex flex-col w-full text-center justify-center">
                   <div className="flex flex-col w-full">
                     <div>
-                      <h3 className="text-2xl opacity-1 transform-none sm:text-3xl lg:text-4xl font-medium leading-relaxed mb-8 mt-5 text-green-800">
+                      <h3 className="text-2xl opacity-1 transform-none sm:text-3xl lg:text-4xl font-bold leading-relaxed mb-8 mt-5 text-green-800">
                         Health consequences of unsafe/illegal abortion
                       </h3>
                       <p className="leading-normal opacity-1 transform-none text-left mx-auto my-2 mb-4">
@@ -439,7 +444,7 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                         and who performed it. The complication rate is as high as
                         54–55% among poor women in both rural and urban areas.
                       </p>
-                      <span  style={{ display: showMore2 ? 'block' : 'none' }} >
+                      {/* <span  style={{ display: showMore2 ? 'block' : 'none' }} > */}
 
                       <p className="leading-normal opacity-1 transform-none text-left mx-auto my-2 mb-4">
                         Complication rates are highest for procedures that are
@@ -511,16 +516,31 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                           </li>
                         </ul>
                       </div>
-                      </span>
-                      <button onClick={() => setShowMore2(!showMore2)} className="font-medium mt-2 tracking-wide py-1 px-5 sm:px-8 border border-green-800 text-green-800 bg-white-500 outline-none rounded-l-full rounded-r-full capitalize hover:bg-green-800 hover:text-white transition-all hover:shadow-green">
+                      {/* </span> */}
+                      {/* <button onClick={() => setShowMore2(!showMore2)} className="font-medium mt-2 tracking-wide py-1 px-5 sm:px-8 border border-green-800 text-green-800 bg-white-500 outline-none rounded-l-full rounded-r-full capitalize hover:bg-green-800 hover:text-white transition-all hover:shadow-green">
         {showMore2 ? 'Read Less' : 'Read More'}
-      </button>
+      </button> */}
                     </div>
                   </div>
+           
                 </div>
               </div>
             </AnimationRevealPage>
+            {/* <img src={icon} alt="" /> */}
+          {/* <img src={icon1} alt="" />
+          <img src={icon2} alt="" /> */}
+          {/* <img src={icon3} alt="" /> */}
+          {/* <img src={icon4} alt="" />
+          <img src={icon5} alt="" />
+          <img src={icon6} alt="" />
+          <img src={icon7} alt="" />
+          <img src={icon8} alt="" />
+          <img src={icon9} alt="" />
+          <img src={icon12} alt="" />
+          <img src={icon11} alt="" />
+          <img src={icon0} alt="" /> */}
           </div>
+      
           <Footer />
         </div>
       </div>

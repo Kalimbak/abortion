@@ -3,7 +3,7 @@ import React from 'react'
 export const Footer = () => {
   return (
     <div id="footer" className="bg-white max-w-screen-xl">
-      <div className="pt-44 pb-24">
+      <div className=" pb-12">
         <div
           className=" w-full px-6 sm:px-8 lg:px-16 grid grid-rows-6 sm:grid-rows-1 grid-flow-row sm:grid-flow-col grid-cols-3 sm:grid-cols-12 gap-4"
         >
