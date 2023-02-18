@@ -8,7 +8,7 @@ import { Footer } from "../../components/Footer/footer";
 import routes from "../../utils/routes";
 import { motion } from "framer-motion";
 import useInView from "../../helpers/useInView";
-// import icon from "../image/Icon1.svg"
+import icon from "../image/Icon1.svg"
 // // import icon1 from "../image/Icon2.svg"
 // // import icon2 from "../image/Icon3.svg"
 // import icon3 from "../image/Icon4.png"
@@ -526,19 +526,21 @@ export const Landing = ({ direction = "up", offset = 100 }) => {
                 </div>
               </div>
             </AnimationRevealPage>
+            <div>
             {/* <img src={icon} alt="" /> */}
           {/* <img src={icon1} alt="" />
           <img src={icon2} alt="" /> */}
           {/* <img src={icon3} alt="" /> */}
-          {/* <img src={icon4} alt="" />
-          <img src={icon5} alt="" />
-          <img src={icon6} alt="" />
-          <img src={icon7} alt="" />
-          <img src={icon8} alt="" />
-          <img src={icon9} alt="" />
-          <img src={icon12} alt="" />
-          <img src={icon11} alt="" />
-          <img src={icon0} alt="" /> */}
+          {/* <img src={icon4} alt="" />*/}
+          {/* <img src={icon5} alt="" /> */}
+          {/* <img src={icon6} alt="" /> */}
+          {/* <img src={icon7} alt="" /> */}
+          {/* <img src={icon8} alt="" /> */}
+          {/* <img src={icon9} alt="" /> */}
+          {/* <img src={icon12} alt="" /> */}
+          {/* <img src={icon11} alt="" /> */}
+          {/* <img src={icon0} alt="" />  */}
+          </div>
           </div>
       
           <Footer />
