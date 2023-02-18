@@ -8,7 +8,7 @@ import { Footer } from "../../components/Footer/footer";
 import routes from "../../utils/routes";
 import { motion } from "framer-motion";
 import useInView from "../../helpers/useInView";
-import icon from "../image/Icon1.svg"
+// import icon from "../image/Icon1.svg"
 // // import icon1 from "../image/Icon2.svg"
 // // import icon2 from "../image/Icon3.svg"
 // import icon3 from "../image/Icon4.png"
